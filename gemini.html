@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple JS Snake</title>
+    <style>
+        body {
+            background-color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            font-family: sans-serif;
+        }
+        canvas {
+            border: 5px solid #ecf0f1;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            background-color: #000;
+        }
+        .stats {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .controls {
+            margin-top: 15px;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
 
+    <div class="stats">Score: <span id="score">0</span></div>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <div class="controls">Use Arrow Keys to Move</div>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const scoreElement = document.getElementById("score");
+
+        const gridSize = 20; // Size of one square
+        const tileCount = canvas.width / gridSize; // How many tiles across
+
+        let score = 0;
+        let dx = 0; // horizontal velocity
+        let dy = 0; // vertical velocity
+
+        // Snake body (array of coordinates)
+        let snake = [
+            {x: 10, y: 10}, 
+            {x: 10, y: 11}, 
+            {x: 10, y: 12}
+        ];
+
+        let foodX = 5;
+        let foodY = 5;
+
+        // Start the game loop
+        main();
+        createFood();
+
+        // Standard Keyboard Listeners
+        document.addEventListener("keydown
